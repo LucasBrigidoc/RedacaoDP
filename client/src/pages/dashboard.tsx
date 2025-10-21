@@ -3,7 +3,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookOpen, TrendingUp, FileText, Target } from "lucide-react";
 import { Essay } from "@shared/schema";
 import { EssayChart } from "@/components/essay-chart";
-import { CompetencyBreakdown } from "@/components/competency-breakdown";
 import { RecentEssays } from "@/components/recent-essays";
 import { MetricCard } from "@/components/metric-card";
 import { PerformanceInsights } from "@/components/performance-insights";
@@ -88,18 +87,6 @@ export default function Dashboard() {
 
       <div className="grid gap-4 sm:gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-4 sm:space-y-6">
-          <Card className="border-primary/30 dark:border-primary/20">
-            <CardHeader className="pb-4">
-              <CardTitle className="flex items-center gap-2 text-primary dark:text-primary text-lg sm:text-xl">
-                <Target className="h-4 w-4 sm:h-5 sm:w-5" />
-                Competências ENEM
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="px-3 sm:px-6">
-              <CompetencyBreakdown essays={essays || []} />
-            </CardContent>
-          </Card>
-
           <div className="hidden sm:block">
             <CompetencyStats essays={essays || []} />
           </div>
