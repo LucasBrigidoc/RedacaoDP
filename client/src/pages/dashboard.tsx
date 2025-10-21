@@ -6,6 +6,8 @@ import { EssayChart } from "@/components/essay-chart";
 import { CompetencyBreakdown } from "@/components/competency-breakdown";
 import { RecentEssays } from "@/components/recent-essays";
 import { MetricCard } from "@/components/metric-card";
+import { PerformanceInsights } from "@/components/performance-insights";
+import { CompetencyStats } from "@/components/competency-stats";
 
 export default function Dashboard() {
   const { data: essays, isLoading } = useQuery<Essay[]>({
@@ -84,31 +86,39 @@ export default function Dashboard() {
         </CardContent>
       </Card>
 
-      <div className="grid gap-6 lg:grid-cols-2">
-        <Card className="border-primary/30">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-primary">
-              <FileText className="h-5 w-5" />
-              Últimas Redações Corrigidas
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <RecentEssays essays={essays?.slice(0, 5) || []} />
-          </CardContent>
-        </Card>
+      <div className="grid gap-6 lg:grid-cols-3">
+        <div className="lg:col-span-2 space-y-6">
+          <Card className="border-primary/30 dark:border-primary/20">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-primary dark:text-primary">
+                <Target className="h-5 w-5" />
+                Competências ENEM
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CompetencyBreakdown essays={essays || []} />
+            </CardContent>
+          </Card>
 
-        <Card className="border-primary/30">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-primary">
-              <Target className="h-5 w-5" />
-              Competências ENEM
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <CompetencyBreakdown essays={essays || []} />
-          </CardContent>
-        </Card>
+          <CompetencyStats essays={essays || []} />
+        </div>
+
+        <div className="space-y-6">
+          <PerformanceInsights essays={essays || []} />
+        </div>
       </div>
+
+      <Card className="border-primary/30 dark:border-primary/20">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-primary dark:text-primary">
+            <FileText className="h-5 w-5" />
+            Últimas Redações Corrigidas
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <RecentEssays essays={essays?.slice(0, 5) || []} />
+        </CardContent>
+      </Card>
     </div>
   );
 }
