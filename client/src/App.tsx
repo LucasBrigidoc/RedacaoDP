@@ -49,7 +49,7 @@ export default function App() {
                     Portal do Aluno
                   </div>
                 </div>
-                <img src={dpLogo} alt="Logo DP" className="h-12 w-12 object-contain" />
+                <img src={dpLogo} alt="Logo DP" className="h-20 w-20 object-contain" />
               </header>
               <main className="flex-1 overflow-auto p-6">
                 <Router />
