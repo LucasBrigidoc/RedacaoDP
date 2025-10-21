@@ -91,8 +91,8 @@ export default function Agendamentos() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-4xl font-bold text-foreground mb-2">
+      <div className="border-l-4 border-primary pl-4">
+        <h1 className="text-4xl font-bold text-primary mb-2">
           Laboratório de Redação
         </h1>
         <p className="text-muted-foreground">
@@ -101,10 +101,10 @@ export default function Agendamentos() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">
-        <Card className="lg:col-span-2">
+        <Card className="lg:col-span-2 border-primary/30">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <CalendarIcon className="h-5 w-5 text-primary" />
+            <CardTitle className="flex items-center gap-2 text-primary">
+              <CalendarIcon className="h-5 w-5" />
               Selecione uma Data
             </CardTitle>
           </CardHeader>
@@ -117,14 +117,14 @@ export default function Agendamentos() {
                   onSelect={setSelectedDate}
                   locale={ptBR}
                   disabled={(date) => date < new Date() || date > addDays(new Date(), 30)}
-                  className="rounded-md border"
+                  className="rounded-md border border-primary/20"
                   data-testid="calendar-agendamento"
                 />
               </div>
 
               {selectedDate && (
                 <div className="flex-1">
-                  <h3 className="font-semibold mb-4 text-sm text-muted-foreground">
+                  <h3 className="font-semibold mb-4 text-sm text-primary">
                     Horários Disponíveis - {format(selectedDate, "dd 'de' MMMM", { locale: ptBR })}
                   </h3>
                   <div className="grid grid-cols-2 gap-3">
@@ -165,10 +165,10 @@ export default function Agendamentos() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="border-primary/30">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Clock className="h-5 w-5 text-primary" />
+            <CardTitle className="flex items-center gap-2 text-primary">
+              <Clock className="h-5 w-5" />
               Próximos Agendamentos
             </CardTitle>
           </CardHeader>
@@ -178,7 +178,7 @@ export default function Agendamentos() {
                 {upcomingAppointments.map((apt) => (
                   <div
                     key={apt.id}
-                    className="p-4 rounded-lg border bg-card hover-elevate"
+                    className="p-4 rounded-lg border border-primary/30 bg-card hover-elevate"
                     data-testid={`appointment-${apt.id}`}
                   >
                     <div className="flex items-start justify-between gap-2">
@@ -190,7 +190,7 @@ export default function Agendamentos() {
                           {apt.horario}
                         </p>
                       </div>
-                      <Badge variant="secondary" className="text-xs">
+                      <Badge className="text-xs bg-primary/20 text-primary border-primary/30">
                         Agendado
                       </Badge>
                     </div>

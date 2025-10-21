@@ -8,6 +8,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import Dashboard from "@/pages/dashboard";
 import Agendamentos from "@/pages/agendamentos";
 import NotFound from "@/pages/not-found";
+import { useEffect } from "react";
 
 function Router() {
   return (
@@ -20,6 +21,10 @@ function Router() {
 }
 
 export default function App() {
+  useEffect(() => {
+    document.documentElement.classList.add("dark");
+  }, []);
+
   const style = {
     "--sidebar-width": "18rem",
     "--sidebar-width-icon": "4rem",
@@ -32,9 +37,9 @@ export default function App() {
           <div className="flex h-screen w-full">
             <AppSidebar />
             <div className="flex flex-col flex-1 overflow-hidden">
-              <header className="flex items-center justify-between p-4 border-b bg-background sticky top-0 z-10">
+              <header className="flex items-center justify-between p-4 border-b border-primary/20 bg-background sticky top-0 z-10">
                 <SidebarTrigger data-testid="button-sidebar-toggle" />
-                <div className="text-sm text-muted-foreground">
+                <div className="text-sm text-primary font-medium">
                   Portal do Aluno
                 </div>
               </header>

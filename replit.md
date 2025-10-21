@@ -5,10 +5,13 @@ Portal institucional para alunos do Curso de Redação Diego Pereira acompanhare
 
 ## Identidade Visual
 - **Logo**: DP (Diego Pereira) em cor dourada (#D4AF77)
+- **Tema**: Escuro por padrão com destaque dourado intenso
 - **Paleta de Cores**: 
-  - Dourado primário (45 35% 65%) - Botões, destaques, elementos interativos
-  - Azul marinho escuro (220 30% 15%) - Background principal
-  - Cinza ardósia (220 25% 18%) - Cards e superfícies secundárias
+  - Dourado primário (45 40% 70%) - Títulos, valores, ícones, bordas
+  - Azul marinho escuro profundo (220 30% 12%) - Background principal
+  - Cinza ardósia escuro (220 25% 16%) - Cards e superfícies secundárias
+  - Bordas douradas (primary/30) em todos os cards principais
+  - Ícones com fundo dourado/transparente nos metric cards
 
 ## Funcionalidades Principais
 
@@ -120,7 +123,8 @@ Portal institucional para alunos do Curso de Redação Diego Pereira acompanhare
 - Todos os testes end-to-end passaram com sucesso
 - Dashboard totalmente funcional com métricas, gráficos e competências ENEM
 - Sistema de agendamento completo com detecção de conflitos
-- Identidade visual DP aplicada corretamente
+- **Tema escuro ativado por padrão com elementos dourados em destaque**
+- Identidade visual DP aplicada intensamente (bordas douradas, títulos, valores, ícones)
 - SEO implementado (meta tags, Open Graph)
 - Aprovado pelo architect para entrega
 

@@ -32,8 +32,8 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-4xl font-bold text-foreground mb-2">
+      <div className="border-l-4 border-primary pl-4">
+        <h1 className="text-4xl font-bold text-primary mb-2">
           Bem-vindo ao Portal do Aluno
         </h1>
         <p className="text-muted-foreground">
@@ -72,10 +72,10 @@ export default function Dashboard() {
         />
       </div>
 
-      <Card>
+      <Card className="border-primary/30">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-primary" />
+          <CardTitle className="flex items-center gap-2 text-primary">
+            <TrendingUp className="h-5 w-5" />
             Evolução das Notas
           </CardTitle>
         </CardHeader>
@@ -85,10 +85,10 @@ export default function Dashboard() {
       </Card>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <Card>
+        <Card className="border-primary/30">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <FileText className="h-5 w-5 text-primary" />
+            <CardTitle className="flex items-center gap-2 text-primary">
+              <FileText className="h-5 w-5" />
               Últimas Redações Corrigidas
             </CardTitle>
           </CardHeader>
@@ -97,10 +97,10 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="border-primary/30">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Target className="h-5 w-5 text-primary" />
+            <CardTitle className="flex items-center gap-2 text-primary">
+              <Target className="h-5 w-5" />
               Competências ENEM
             </CardTitle>
           </CardHeader>

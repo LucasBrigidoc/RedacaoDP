@@ -15,14 +15,16 @@ export function MetricCard({ title, value, suffix, icon: Icon, trend, "data-test
   const trendColor = trend === "up" ? "text-chart-3" : trend === "down" ? "text-chart-5" : "text-muted-foreground";
 
   return (
-    <Card className="hover-elevate" data-testid={testId}>
+    <Card className="hover-elevate border-primary/30" data-testid={testId}>
       <CardContent className="p-6">
         <div className="flex items-center justify-between mb-4">
           <p className="text-sm font-medium text-muted-foreground">{title}</p>
-          <Icon className="h-5 w-5 text-primary" />
+          <div className="p-2 rounded-lg bg-primary/10 border border-primary/20">
+            <Icon className="h-5 w-5 text-primary" />
+          </div>
         </div>
         <div className="space-y-1">
-          <p className="text-3xl font-mono font-bold text-foreground">
+          <p className="text-3xl font-mono font-bold text-primary">
             {value}
             {suffix && <span className="text-xl text-muted-foreground">{suffix}</span>}
           </p>
