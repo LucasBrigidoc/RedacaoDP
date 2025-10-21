@@ -11,6 +11,9 @@ import Materiais from "@/pages/materiais";
 import Dieguito from "@/pages/dieguito";
 import NotFound from "@/pages/not-found";
 import { useEffect } from "react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Bot } from "lucide-react";
+import dieguitoAvatar from "@assets/image_1761077350905.png";
 
 function Router() {
   return (
@@ -43,8 +46,16 @@ export default function App() {
             <div className="flex flex-col flex-1 overflow-hidden">
               <header className="flex items-center justify-between p-4 border-b border-primary/20 bg-background sticky top-0 z-10">
                 <SidebarTrigger data-testid="button-sidebar-toggle" />
-                <div className="text-sm text-primary font-medium">
-                  Portal do Aluno
+                <div className="flex items-center gap-2">
+                  <Avatar className="h-8 w-8 border-2 border-primary bg-white">
+                    <AvatarImage src={dieguitoAvatar} alt="Logo" className="object-cover" />
+                    <AvatarFallback className="bg-white text-primary">
+                      <Bot className="h-4 w-4" />
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="text-sm text-primary font-medium">
+                    Portal do Aluno
+                  </div>
                 </div>
               </header>
               <main className="flex-1 overflow-auto p-6">
