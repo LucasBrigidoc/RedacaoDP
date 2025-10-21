@@ -1,7 +1,8 @@
-import type { Express } from "express";
+import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertEssaySchema, insertAppointmentSchema, insertMaterialSchema, insertWeeklyThemeSchema } from "@shared/schema";
+import "express-session";
 
 declare module 'express-session' {
   interface SessionData {
@@ -30,7 +31,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   app.post("/api/auth/logout", async (req, res) => {
-    req.session.destroy((err) => {
+    req.session.destroy((err: Error | null) => {
       if (err) {
         return res.status(500).json({ success: false, message: "Erro ao fazer logout" });
       }
@@ -48,13 +49,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Middleware to protect routes
-  const requireAuth = (req: any, res: any, next: any) => {
+  const requireAuth = (req: Request, res: Response, next: NextFunction) => {
     if (req.session.isAuthenticated) {
       next();
     } else {
       res.status(401).json({ message: "Não autenticado" });
     }
   };
+
+  // Apply authentication middleware to all protected routes (except auth routes)
+  app.use("/api/essays", requireAuth);
+  app.use("/api/appointments", requireAuth);
+  app.use("/api/materials", requireAuth);
+  app.use("/api/weekly-theme", requireAuth);
+  app.use("/api/weekly-themes", requireAuth);
+  app.use("/api/dieguito", requireAuth);
+
   app.get("/api/essays", async (_req, res) => {
     try {
       const essays = await storage.getAllEssays();
