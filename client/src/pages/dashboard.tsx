@@ -34,7 +34,7 @@ export default function Dashboard() {
   return (
     <div className="space-y-3 sm:space-y-6 pb-4 sm:pb-6">
       <div className="border-l-4 border-primary pl-3 sm:pl-4">
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-1 sm:mb-2">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-1 sm:mb-2">
           Bem-vindo ao Portal do Aluno
         </h1>
         <p className="text-sm sm:text-base text-muted-foreground">
