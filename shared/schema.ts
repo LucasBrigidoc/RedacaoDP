@@ -53,3 +53,38 @@ export const insertUserSchema = createInsertSchema(users).pick({
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
+
+// Materials (Materiais) table - slides and PDFs
+export const materials = pgTable("materials", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  titulo: text("titulo").notNull(),
+  descricao: text("descricao"),
+  tipo: text("tipo").notNull(), // "slide" ou "pdf"
+  arquivo: text("arquivo").notNull(), // URL or file path
+  dataUpload: date("data_upload").notNull().default(sql`CURRENT_DATE`),
+});
+
+export const insertMaterialSchema = createInsertSchema(materials).omit({
+  id: true,
+  dataUpload: true,
+});
+
+export type InsertMaterial = z.infer<typeof insertMaterialSchema>;
+export type Material = typeof materials.$inferSelect;
+
+// Weekly Themes (Temas Semanais) table
+export const weeklyThemes = pgTable("weekly_themes", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tema: text("tema").notNull(),
+  descricao: text("descricao"),
+  semana: date("semana").notNull(), // Data de início da semana
+  ativo: integer("ativo").notNull().default(1), // 1 = tema atual, 0 = tema passado
+});
+
+export const insertWeeklyThemeSchema = createInsertSchema(weeklyThemes).omit({
+  id: true,
+  ativo: true,
+});
+
+export type InsertWeeklyTheme = z.infer<typeof insertWeeklyThemeSchema>;
+export type WeeklyTheme = typeof weeklyThemes.$inferSelect;

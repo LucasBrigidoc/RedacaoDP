@@ -1,4 +1,4 @@
-import { type User, type InsertUser, type Essay, type InsertEssay, type Appointment, type InsertAppointment, users, essays, appointments } from "@shared/schema";
+import { type User, type InsertUser, type Essay, type InsertEssay, type Appointment, type InsertAppointment, type Material, type InsertMaterial, type WeeklyTheme, type InsertWeeklyTheme, users, essays, appointments, materials, weeklyThemes } from "@shared/schema";
 import { randomUUID } from "crypto";
 import { drizzle } from "drizzle-orm/neon-http";
 import { neon } from "@neondatabase/serverless";
@@ -16,6 +16,14 @@ export interface IStorage {
   getAllAppointments(): Promise<Appointment[]>;
   getAppointment(id: string): Promise<Appointment | undefined>;
   createAppointment(appointment: InsertAppointment): Promise<Appointment>;
+  
+  getAllMaterials(): Promise<Material[]>;
+  getMaterial(id: string): Promise<Material | undefined>;
+  createMaterial(material: InsertMaterial): Promise<Material>;
+  
+  getCurrentWeeklyTheme(): Promise<WeeklyTheme | undefined>;
+  getAllWeeklyThemes(): Promise<WeeklyTheme[]>;
+  createWeeklyTheme(theme: InsertWeeklyTheme): Promise<WeeklyTheme>;
 }
 
 export class MemStorage implements IStorage {
@@ -246,6 +254,34 @@ export class PostgresStorage implements IStorage {
   async createAppointment(insertAppointment: InsertAppointment): Promise<Appointment> {
     const [appointment] = await this.db.insert(appointments).values(insertAppointment).returning();
     return appointment;
+  }
+
+  async getAllMaterials(): Promise<Material[]> {
+    return this.db.select().from(materials).orderBy(desc(materials.dataUpload));
+  }
+
+  async getMaterial(id: string): Promise<Material | undefined> {
+    const [material] = await this.db.select().from(materials).where(eq(materials.id, id));
+    return material;
+  }
+
+  async createMaterial(insertMaterial: InsertMaterial): Promise<Material> {
+    const [material] = await this.db.insert(materials).values(insertMaterial).returning();
+    return material;
+  }
+
+  async getCurrentWeeklyTheme(): Promise<WeeklyTheme | undefined> {
+    const [theme] = await this.db.select().from(weeklyThemes).where(eq(weeklyThemes.ativo, 1)).orderBy(desc(weeklyThemes.semana));
+    return theme;
+  }
+
+  async getAllWeeklyThemes(): Promise<WeeklyTheme[]> {
+    return this.db.select().from(weeklyThemes).orderBy(desc(weeklyThemes.semana));
+  }
+
+  async createWeeklyTheme(insertTheme: InsertWeeklyTheme): Promise<WeeklyTheme> {
+    const [theme] = await this.db.insert(weeklyThemes).values(insertTheme).returning();
+    return theme;
   }
 }
 

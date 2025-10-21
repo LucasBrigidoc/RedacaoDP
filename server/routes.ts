@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertEssaySchema, insertAppointmentSchema } from "@shared/schema";
+import { insertEssaySchema, insertAppointmentSchema, insertMaterialSchema, insertWeeklyThemeSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/essays", async (_req, res) => {
@@ -61,6 +61,68 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertAppointmentSchema.parse(req.body);
       const appointment = await storage.createAppointment(validatedData);
       res.status(201).json(appointment);
+    } catch (error) {
+      res.status(400).json({ message: "Dados inválidos" });
+    }
+  });
+
+  app.get("/api/materials", async (_req, res) => {
+    try {
+      const allMaterials = await storage.getAllMaterials();
+      res.json(allMaterials);
+    } catch (error) {
+      res.status(500).json({ message: "Erro ao buscar materiais" });
+    }
+  });
+
+  app.get("/api/materials/:id", async (req, res) => {
+    try {
+      const material = await storage.getMaterial(req.params.id);
+      if (!material) {
+        return res.status(404).json({ message: "Material não encontrado" });
+      }
+      res.json(material);
+    } catch (error) {
+      res.status(500).json({ message: "Erro ao buscar material" });
+    }
+  });
+
+  app.post("/api/materials", async (req, res) => {
+    try {
+      const validatedData = insertMaterialSchema.parse(req.body);
+      const material = await storage.createMaterial(validatedData);
+      res.status(201).json(material);
+    } catch (error) {
+      res.status(400).json({ message: "Dados inválidos" });
+    }
+  });
+
+  app.get("/api/weekly-theme", async (_req, res) => {
+    try {
+      const theme = await storage.getCurrentWeeklyTheme();
+      if (!theme) {
+        return res.status(404).json({ message: "Nenhum tema ativo" });
+      }
+      res.json(theme);
+    } catch (error) {
+      res.status(500).json({ message: "Erro ao buscar tema semanal" });
+    }
+  });
+
+  app.get("/api/weekly-themes", async (_req, res) => {
+    try {
+      const themes = await storage.getAllWeeklyThemes();
+      res.json(themes);
+    } catch (error) {
+      res.status(500).json({ message: "Erro ao buscar temas" });
+    }
+  });
+
+  app.post("/api/weekly-themes", async (req, res) => {
+    try {
+      const validatedData = insertWeeklyThemeSchema.parse(req.body);
+      const theme = await storage.createWeeklyTheme(validatedData);
+      res.status(201).json(theme);
     } catch (error) {
       res.status(400).json({ message: "Dados inválidos" });
     }
