@@ -25,28 +25,33 @@ export function EssayChart({ essays }: EssayChartProps) {
   }
 
   return (
-    <div className="h-[300px]" data-testid="chart-evolucao">
+    <div className="h-[250px] sm:h-[300px]" data-testid="chart-evolucao">
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={chartData}>
+        <LineChart data={chartData} margin={{ top: 5, right: 5, left: -20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
           <XAxis
             dataKey="data"
             stroke="hsl(var(--muted-foreground))"
-            fontSize={12}
+            fontSize={10}
             tickLine={false}
+            angle={-45}
+            textAnchor="end"
+            height={60}
           />
           <YAxis
             stroke="hsl(var(--muted-foreground))"
-            fontSize={12}
+            fontSize={10}
             tickLine={false}
             domain={[0, 1000]}
             ticks={[0, 200, 400, 600, 800, 1000]}
+            width={40}
           />
           <Tooltip
             contentStyle={{
               backgroundColor: "hsl(var(--popover))",
               border: "1px solid hsl(var(--border))",
               borderRadius: "var(--radius)",
+              fontSize: "12px",
             }}
             labelStyle={{ color: "hsl(var(--foreground))" }}
           />
@@ -54,9 +59,9 @@ export function EssayChart({ essays }: EssayChartProps) {
             type="monotone"
             dataKey="nota"
             stroke="hsl(var(--chart-1))"
-            strokeWidth={3}
-            dot={{ fill: "hsl(var(--chart-1))", r: 5 }}
-            activeDot={{ r: 7 }}
+            strokeWidth={2}
+            dot={{ fill: "hsl(var(--chart-1))", r: 4 }}
+            activeDot={{ r: 6 }}
           />
         </LineChart>
       </ResponsiveContainer>

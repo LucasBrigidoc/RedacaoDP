@@ -27,30 +27,30 @@ export function RecentEssays({ essays }: RecentEssaysProps) {
   };
 
   return (
-    <div className="space-y-3" data-testid="recent-essays-list">
+    <div className="space-y-2 sm:space-y-3" data-testid="recent-essays-list">
       {essays.map((essay) => (
         <div
           key={essay.id}
-          className="p-4 rounded-lg border bg-card hover-elevate"
+          className="p-3 sm:p-4 rounded-lg border bg-card hover-elevate"
           data-testid={`essay-${essay.id}`}
         >
-          <div className="flex items-start justify-between gap-3">
+          <div className="flex items-start justify-between gap-2 sm:gap-3">
             <div className="flex-1 min-w-0">
-              <p className="font-medium text-sm truncate" data-testid={`essay-tema-${essay.id}`}>
+              <p className="font-medium text-xs sm:text-sm line-clamp-2" data-testid={`essay-tema-${essay.id}`}>
                 {essay.tema}
               </p>
               <p className="text-xs text-muted-foreground mt-1">
-                {format(parseISO(essay.data), "dd 'de' MMMM, yyyy", { locale: ptBR })}
+                {format(parseISO(essay.data), "dd/MM/yyyy", { locale: ptBR })}
               </p>
               <div className="flex gap-1 mt-2 flex-wrap">
-                <Badge variant="secondary" className="text-xs">C1: {essay.c1}</Badge>
-                <Badge variant="secondary" className="text-xs">C2: {essay.c2}</Badge>
-                <Badge variant="secondary" className="text-xs">C3: {essay.c3}</Badge>
-                <Badge variant="secondary" className="text-xs">C4: {essay.c4}</Badge>
-                <Badge variant="secondary" className="text-xs">C5: {essay.c5}</Badge>
+                <Badge variant="secondary" className="text-[10px] sm:text-xs px-1.5 sm:px-2">C1: {essay.c1}</Badge>
+                <Badge variant="secondary" className="text-[10px] sm:text-xs px-1.5 sm:px-2">C2: {essay.c2}</Badge>
+                <Badge variant="secondary" className="text-[10px] sm:text-xs px-1.5 sm:px-2">C3: {essay.c3}</Badge>
+                <Badge variant="secondary" className="text-[10px] sm:text-xs px-1.5 sm:px-2">C4: {essay.c4}</Badge>
+                <Badge variant="secondary" className="text-[10px] sm:text-xs px-1.5 sm:px-2">C5: {essay.c5}</Badge>
               </div>
             </div>
-            <div className={`px-3 py-1.5 rounded-md font-mono font-bold text-sm ${getGradeColor(essay.notaTotal)}`} data-testid={`essay-nota-${essay.id}`}>
+            <div className={`px-2 sm:px-3 py-1 sm:py-1.5 rounded-md font-mono font-bold text-xs sm:text-sm whitespace-nowrap ${getGradeColor(essay.notaTotal)}`} data-testid={`essay-nota-${essay.id}`}>
               {essay.notaTotal}
             </div>
           </div>

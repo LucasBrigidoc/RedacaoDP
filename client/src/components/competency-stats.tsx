@@ -52,22 +52,22 @@ export function CompetencyStats({ essays }: CompetencyStatsProps) {
 
   return (
     <Card className="border-primary/30 dark:bg-card dark:border-primary/20" data-testid="card-competency-stats">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-foreground dark:text-foreground">
-          <BarChart3 className="h-5 w-5 text-primary dark:text-primary" />
-          Estatísticas Detalhadas por Competência
+      <CardHeader className="pb-3 sm:pb-6">
+        <CardTitle className="flex items-center gap-2 text-foreground dark:text-foreground text-base sm:text-lg">
+          <BarChart3 className="h-4 w-4 sm:h-5 sm:w-5 text-primary dark:text-primary" />
+          <span className="truncate">Estatísticas Detalhadas</span>
         </CardTitle>
-        <CardDescription className="text-muted-foreground dark:text-muted-foreground">
-          Análise completa do seu desempenho em cada competência
+        <CardDescription className="text-xs sm:text-sm text-muted-foreground dark:text-muted-foreground">
+          Análise completa por competência
         </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-4 sm:space-y-6">
         {stats.map((stat) => (
-          <div key={stat.key} className="space-y-3" data-testid={`stat-${stat.key}`}>
-            <div className="flex items-start justify-between">
-              <div className="space-y-1">
-                <div className="flex items-center gap-2">
-                  <h4 className="font-semibold text-foreground dark:text-foreground">{stat.name}</h4>
+          <div key={stat.key} className="space-y-2 sm:space-y-3" data-testid={`stat-${stat.key}`}>
+            <div className="flex items-start justify-between gap-2">
+              <div className="space-y-1 flex-1 min-w-0">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <h4 className="font-semibold text-sm sm:text-base text-foreground dark:text-foreground truncate">{stat.name}</h4>
                   {stat.trend === "up" && (
                     <Badge className="bg-green-500/20 text-green-600 dark:bg-green-500/30 dark:text-green-400 border-0" data-testid={`badge-trend-${stat.key}`}>
                       <TrendingUp className="h-3 w-3 mr-1" />

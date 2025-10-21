@@ -43,17 +43,17 @@ export function CompetencyBreakdown({ essays }: CompetencyBreakdownProps) {
   };
 
   return (
-    <div className="space-y-6" data-testid="competency-breakdown">
+    <div className="space-y-4 sm:space-y-6" data-testid="competency-breakdown">
       {averages.map((comp, index) => (
         <div key={comp.key} className="space-y-2" data-testid={`competency-${comp.key}`}>
-          <div className="flex items-center justify-between">
-            <div className="flex-1">
-              <p className="font-semibold text-sm">{comp.label}</p>
-              <p className="text-xs text-muted-foreground">{comp.description}</p>
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex-1 min-w-0">
+              <p className="font-semibold text-sm truncate">{comp.label}</p>
+              <p className="text-xs text-muted-foreground hidden sm:block">{comp.description}</p>
             </div>
-            <p className={`text-2xl font-mono font-bold ${getScoreColor(comp.average)}`}>
+            <p className={`text-xl sm:text-2xl font-mono font-bold ${getScoreColor(comp.average)} whitespace-nowrap`}>
               {comp.average}
-              <span className="text-sm text-muted-foreground">/200</span>
+              <span className="text-xs sm:text-sm text-muted-foreground">/200</span>
             </p>
           </div>
           <div className="relative h-2 bg-muted rounded-full overflow-hidden">

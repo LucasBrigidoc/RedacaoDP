@@ -33,17 +33,17 @@ export default function Dashboard() {
   const targetGrade = 900;
 
   return (
-    <div className="space-y-6">
-      <div className="border-l-4 border-primary pl-4">
-        <h1 className="text-4xl font-bold text-primary mb-2">
+    <div className="space-y-4 sm:space-y-6 pb-6">
+      <div className="border-l-4 border-primary pl-3 sm:pl-4">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-1 sm:mb-2">
           Bem-vindo ao Portal do Aluno
         </h1>
-        <p className="text-muted-foreground">
+        <p className="text-sm sm:text-base text-muted-foreground">
           Acompanhe seu desempenho e evolução no curso
         </p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-3 sm:gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         <MetricCard
           title="Média Geral"
           value={averageGrade}
@@ -74,48 +74,53 @@ export default function Dashboard() {
         />
       </div>
 
-      <Card className="border-primary/30">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-primary">
-            <TrendingUp className="h-5 w-5" />
+      <Card className="border-primary/30 overflow-hidden">
+        <CardHeader className="pb-4">
+          <CardTitle className="flex items-center gap-2 text-primary text-lg sm:text-xl">
+            <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5" />
             Evolução das Notas
           </CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="px-2 sm:px-6">
           <EssayChart essays={essays || []} />
         </CardContent>
       </Card>
 
-      <div className="grid gap-6 lg:grid-cols-3">
-        <div className="lg:col-span-2 space-y-6">
+      <div className="grid gap-4 sm:gap-6 lg:grid-cols-3">
+        <div className="lg:col-span-2 space-y-4 sm:space-y-6">
           <Card className="border-primary/30 dark:border-primary/20">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-primary dark:text-primary">
-                <Target className="h-5 w-5" />
+            <CardHeader className="pb-4">
+              <CardTitle className="flex items-center gap-2 text-primary dark:text-primary text-lg sm:text-xl">
+                <Target className="h-4 w-4 sm:h-5 sm:w-5" />
                 Competências ENEM
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="px-3 sm:px-6">
               <CompetencyBreakdown essays={essays || []} />
             </CardContent>
           </Card>
 
-          <CompetencyStats essays={essays || []} />
+          <div className="hidden sm:block">
+            <CompetencyStats essays={essays || []} />
+          </div>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           <PerformanceInsights essays={essays || []} />
+          <div className="sm:hidden">
+            <CompetencyStats essays={essays || []} />
+          </div>
         </div>
       </div>
 
       <Card className="border-primary/30 dark:border-primary/20">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-primary dark:text-primary">
-            <FileText className="h-5 w-5" />
+        <CardHeader className="pb-4">
+          <CardTitle className="flex items-center gap-2 text-primary dark:text-primary text-lg sm:text-xl">
+            <FileText className="h-4 w-4 sm:h-5 sm:w-5" />
             Últimas Redações Corrigidas
           </CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="px-3 sm:px-6">
           <RecentEssays essays={essays?.slice(0, 5) || []} />
         </CardContent>
       </Card>

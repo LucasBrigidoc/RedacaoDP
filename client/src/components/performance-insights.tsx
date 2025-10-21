@@ -100,49 +100,49 @@ export function PerformanceInsights({ essays }: PerformanceInsightsProps) {
   const needsImprovement = distanceToGoal > 0;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Tendência Geral */}
       <Card className={`border-2 ${trend === "up" ? "border-green-500/30" : trend === "down" ? "border-red-500/30" : "border-primary/30"} dark:bg-card`} data-testid="card-performance-trend">
-        <CardHeader>
-          <div className="flex items-start justify-between">
-            <div className="space-y-1">
-              <CardTitle className="flex items-center gap-2 text-foreground dark:text-foreground">
-                <TrendingUp className="h-5 w-5 text-primary dark:text-primary" />
-                Análise de Tendência
+        <CardHeader className="pb-3 sm:pb-6">
+          <div className="flex items-start justify-between gap-2">
+            <div className="space-y-1 flex-1 min-w-0">
+              <CardTitle className="flex items-center gap-2 text-foreground dark:text-foreground text-base sm:text-lg">
+                <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 text-primary dark:text-primary" />
+                <span className="truncate">Análise de Tendência</span>
               </CardTitle>
-              <CardDescription className="text-muted-foreground dark:text-muted-foreground">
+              <CardDescription className="text-xs sm:text-sm text-muted-foreground dark:text-muted-foreground hidden sm:block">
                 Comparação das últimas 3 redações com as 3 anteriores
               </CardDescription>
             </div>
-            <Badge className={`${trendBg} ${trendColor} border-0`} data-testid="badge-trend-status">
+            <Badge className={`${trendBg} ${trendColor} border-0 text-xs whitespace-nowrap`} data-testid="badge-trend-status">
               {trendMessage}
             </Badge>
           </div>
         </CardHeader>
-        <CardContent>
-          <div className="flex items-center gap-6">
-            <div className={`p-4 rounded-full ${trendBg}`}>
+        <CardContent className="pt-0">
+          <div className="flex items-center gap-3 sm:gap-6">
+            <div className={`p-3 sm:p-4 rounded-full ${trendBg}`}>
               {(() => {
                 const Icon = trendIcon;
-                return <Icon className={`h-8 w-8 ${trendColor}`} />;
+                return <Icon className={`h-6 w-6 sm:h-8 sm:w-8 ${trendColor}`} />;
               })()}
             </div>
-            <div className="flex-1">
-              <div className="flex items-baseline gap-2">
-                <span className="text-3xl font-bold text-primary dark:text-primary" data-testid="text-trend-difference">
+            <div className="flex-1 min-w-0">
+              <div className="flex items-baseline gap-1 sm:gap-2 flex-wrap">
+                <span className="text-2xl sm:text-3xl font-bold text-primary dark:text-primary" data-testid="text-trend-difference">
                   {difference > 0 ? "+" : ""}{Math.round(difference)}
                 </span>
-                <span className="text-muted-foreground dark:text-muted-foreground">pontos</span>
+                <span className="text-xs sm:text-sm text-muted-foreground dark:text-muted-foreground">pontos</span>
                 {percentageChange !== 0 && (
-                  <span className={`text-sm ${trendColor}`} data-testid="text-trend-percentage">
+                  <span className={`text-xs sm:text-sm ${trendColor}`} data-testid="text-trend-percentage">
                     ({percentageChange > 0 ? "+" : ""}{percentageChange.toFixed(1)}%)
                   </span>
                 )}
               </div>
-              <p className="text-sm text-muted-foreground dark:text-muted-foreground mt-1">
-                Média atual: <span className="font-semibold text-foreground dark:text-foreground">{Math.round(recentAvg)}</span> pontos
+              <p className="text-xs sm:text-sm text-muted-foreground dark:text-muted-foreground mt-1">
+                Média atual: <span className="font-semibold text-foreground dark:text-foreground">{Math.round(recentAvg)}</span>
                 {previousEssays.length > 0 && (
-                  <> vs anterior: <span className="font-semibold text-foreground dark:text-foreground">{Math.round(previousAvg)}</span> pontos</>
+                  <> vs <span className="font-semibold text-foreground dark:text-foreground">{Math.round(previousAvg)}</span></>
                 )}
               </p>
             </div>
