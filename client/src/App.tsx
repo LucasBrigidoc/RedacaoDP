@@ -42,13 +42,11 @@ export default function App() {
           <div className="flex h-screen w-full">
             <AppSidebar />
             <div className="flex flex-col flex-1 overflow-hidden">
-              <header className="flex items-center justify-between p-4 border-b border-primary/20 bg-background sticky top-0 z-10">
+              <header className="flex items-center gap-4 p-4 border-b border-primary/20 bg-background sticky top-0 z-10">
                 <SidebarTrigger data-testid="button-sidebar-toggle" />
-                <div className="flex items-center gap-2">
-                  <img src={dpLogo} alt="Logo DP" className="h-8 w-8 object-contain" />
-                  <div className="text-sm text-primary font-medium">
-                    Portal do Aluno
-                  </div>
+                <img src={dpLogo} alt="Logo DP" className="h-12 w-12 object-contain" />
+                <div className="text-lg text-primary font-medium">
+                  Portal do Aluno
                 </div>
               </header>
               <main className="flex-1 overflow-auto p-6">
