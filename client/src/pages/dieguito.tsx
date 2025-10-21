@@ -105,10 +105,10 @@ export default function Dieguito() {
                 data-testid={`message-${message.role}-${message.id}`}
               >
                 {message.role === "assistant" && (
-                  <Avatar className="h-8 w-8 border-2 border-primary bg-white">
+                  <Avatar className="h-12 w-12 border-2 border-primary bg-white">
                     <AvatarImage src={dieguitoAvatar} alt="Dieguito" className="object-cover" />
                     <AvatarFallback className="bg-white text-primary">
-                      <Bot className="h-4 w-4" />
+                      <Bot className="h-6 w-6" />
                     </AvatarFallback>
                   </Avatar>
                 )}
@@ -128,9 +128,9 @@ export default function Dieguito() {
                   </span>
                 </div>
                 {message.role === "user" && (
-                  <Avatar className="h-8 w-8 border-2 border-primary">
+                  <Avatar className="h-12 w-12 border-2 border-primary">
                     <AvatarFallback className="bg-primary text-primary-foreground">
-                      <User className="h-4 w-4" />
+                      <User className="h-6 w-6" />
                     </AvatarFallback>
                   </Avatar>
                 )}
@@ -138,10 +138,10 @@ export default function Dieguito() {
             ))}
             {sendMessageMutation.isPending && (
               <div className="flex gap-3 justify-start">
-                <Avatar className="h-8 w-8 border-2 border-primary bg-white">
+                <Avatar className="h-12 w-12 border-2 border-primary bg-white">
                   <AvatarImage src={dieguitoAvatar} alt="Dieguito" className="object-cover" />
                   <AvatarFallback className="bg-white text-primary">
-                    <Bot className="h-4 w-4" />
+                    <Bot className="h-6 w-6" />
                   </AvatarFallback>
                 </Avatar>
                 <div className="bg-muted border border-primary/20 rounded-lg p-4">
