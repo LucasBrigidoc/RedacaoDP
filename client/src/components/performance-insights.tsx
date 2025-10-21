@@ -152,26 +152,26 @@ export function PerformanceInsights({ essays }: PerformanceInsightsProps) {
 
       {/* Competências Mais Fracas */}
       <Card className="border-red-500/30 dark:bg-card dark:border-red-500/20" data-testid="card-weakest-competencies">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-foreground dark:text-foreground">
-            <AlertCircle className="h-5 w-5 text-red-500" />
+        <CardHeader className="pb-3 sm:pb-6">
+          <CardTitle className="flex items-center gap-2 text-foreground dark:text-foreground text-base sm:text-lg">
+            <AlertCircle className="h-4 w-4 sm:h-5 sm:w-5 text-red-500" />
             Onde Você Pode Melhorar
           </CardTitle>
-          <CardDescription className="text-muted-foreground dark:text-muted-foreground">
+          <CardDescription className="text-xs sm:text-sm text-muted-foreground dark:text-muted-foreground">
             Competências que precisam de mais atenção
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 sm:space-y-5">
           {weakestCompetencies.map((comp, index) => (
             <div key={comp.key} className="space-y-2" data-testid={`weakness-${comp.key}`}>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Badge variant="destructive" className="bg-red-500/20 text-red-600 dark:bg-red-500/30 dark:text-red-400">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <Badge variant="destructive" className="bg-red-500/20 text-red-600 dark:bg-red-500/30 dark:text-red-400 text-xs whitespace-nowrap">
                     {index + 1}º mais fraca
                   </Badge>
-                  <span className="font-semibold text-foreground dark:text-foreground">{comp.name}</span>
+                  <span className="font-semibold text-sm sm:text-base text-foreground dark:text-foreground">{comp.name}</span>
                 </div>
-                <span className="text-lg font-bold text-red-600 dark:text-red-500" data-testid={`text-avg-${comp.key}`}>
+                <span className="text-base sm:text-lg font-bold text-red-600 dark:text-red-500 whitespace-nowrap" data-testid={`text-avg-${comp.key}`}>
                   {comp.avg}/200
                 </span>
               </div>
@@ -181,9 +181,9 @@ export function PerformanceInsights({ essays }: PerformanceInsightsProps) {
                   style={{ width: `${comp.percentage}%` }}
                 />
               </div>
-              <div className="flex items-start gap-2 p-3 bg-primary/5 dark:bg-primary/10 rounded-lg">
-                <Lightbulb className="h-4 w-4 text-primary dark:text-primary mt-0.5 flex-shrink-0" />
-                <p className="text-sm text-foreground/90 dark:text-foreground/80" data-testid={`text-tip-${comp.key}`}>
+              <div className="flex items-start gap-2 p-2.5 sm:p-3 bg-primary/5 dark:bg-primary/10 rounded-lg">
+                <Lightbulb className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary dark:text-primary mt-0.5 flex-shrink-0" />
+                <p className="text-xs sm:text-sm text-foreground/90 dark:text-foreground/80 leading-relaxed" data-testid={`text-tip-${comp.key}`}>
                   {comp.tip}
                 </p>
               </div>
@@ -194,26 +194,26 @@ export function PerformanceInsights({ essays }: PerformanceInsightsProps) {
 
       {/* Competências Mais Fortes */}
       <Card className="border-green-500/30 dark:bg-card dark:border-green-500/20" data-testid="card-strongest-competencies">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-foreground dark:text-foreground">
-            <Target className="h-5 w-5 text-green-500" />
+        <CardHeader className="pb-3 sm:pb-6">
+          <CardTitle className="flex items-center gap-2 text-foreground dark:text-foreground text-base sm:text-lg">
+            <Target className="h-4 w-4 sm:h-5 sm:w-5 text-green-500" />
             Seus Pontos Fortes
           </CardTitle>
-          <CardDescription className="text-muted-foreground dark:text-muted-foreground">
+          <CardDescription className="text-xs sm:text-sm text-muted-foreground dark:text-muted-foreground">
             Continue assim nessas competências!
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-3">
+        <CardContent className="space-y-3 sm:space-y-4">
           {strongestCompetencies.map((comp) => (
-            <div key={comp.key} className="flex items-center justify-between" data-testid={`strength-${comp.key}`}>
-              <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-full bg-green-500/10 dark:bg-green-500/20 flex items-center justify-center">
-                  <Target className="h-5 w-5 text-green-600 dark:text-green-500" />
+            <div key={comp.key} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3" data-testid={`strength-${comp.key}`}>
+              <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+                <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-green-500/10 dark:bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                  <Target className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 dark:text-green-500" />
                 </div>
-                <span className="font-medium text-foreground dark:text-foreground">{comp.name}</span>
+                <span className="font-medium text-sm sm:text-base text-foreground dark:text-foreground truncate">{comp.name}</span>
               </div>
-              <div className="text-right">
-                <div className="text-lg font-bold text-green-600 dark:text-green-500" data-testid={`text-strength-avg-${comp.key}`}>
+              <div className="text-left sm:text-right flex-shrink-0 pl-10 sm:pl-0">
+                <div className="text-base sm:text-lg font-bold text-green-600 dark:text-green-500 whitespace-nowrap" data-testid={`text-strength-avg-${comp.key}`}>
                   {comp.avg}/200
                 </div>
                 <div className="text-xs text-muted-foreground dark:text-muted-foreground">
@@ -228,28 +228,28 @@ export function PerformanceInsights({ essays }: PerformanceInsightsProps) {
       {/* Distância da Meta */}
       {needsImprovement && (
         <Card className="border-primary/30 dark:bg-card dark:border-primary/20" data-testid="card-goal-distance">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-foreground dark:text-foreground">
-              <Target className="h-5 w-5 text-primary dark:text-primary" />
+          <CardHeader className="pb-3 sm:pb-6">
+            <CardTitle className="flex items-center gap-2 text-foreground dark:text-foreground text-base sm:text-lg">
+              <Target className="h-4 w-4 sm:h-5 sm:w-5 text-primary dark:text-primary" />
               Foco na Meta ENEM
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              <div className="flex items-baseline gap-2">
-                <span className="text-sm text-muted-foreground dark:text-muted-foreground">Faltam</span>
-                <span className="text-4xl font-bold text-primary dark:text-primary" data-testid="text-points-to-goal">
+              <div className="flex items-baseline gap-1.5 sm:gap-2 flex-wrap">
+                <span className="text-xs sm:text-sm text-muted-foreground dark:text-muted-foreground">Faltam</span>
+                <span className="text-3xl sm:text-4xl font-bold text-primary dark:text-primary" data-testid="text-points-to-goal">
                   {distanceToGoal}
                 </span>
-                <span className="text-sm text-muted-foreground dark:text-muted-foreground">pontos para {targetGrade}</span>
+                <span className="text-xs sm:text-sm text-muted-foreground dark:text-muted-foreground">pontos para {targetGrade}</span>
               </div>
-              <div className="bg-muted/50 dark:bg-muted/30 rounded-full h-3 overflow-hidden">
+              <div className="bg-muted/50 dark:bg-muted/30 rounded-full h-2.5 sm:h-3 overflow-hidden">
                 <div 
                   className="bg-primary dark:bg-primary h-full rounded-full transition-all"
                   style={{ width: `${(currentAvg / targetGrade) * 100}%` }}
                 />
               </div>
-              <p className="text-sm text-muted-foreground dark:text-muted-foreground">
+              <p className="text-xs sm:text-sm text-muted-foreground dark:text-muted-foreground">
                 Você está a <span className="font-semibold text-foreground dark:text-foreground">{((currentAvg / targetGrade) * 100).toFixed(1)}%</span> da sua meta!
               </p>
             </div>
