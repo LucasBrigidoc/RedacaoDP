@@ -78,9 +78,12 @@ export default function Dieguito() {
     <div className="h-full flex flex-col">
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-3 rounded-full bg-primary/10 border-2 border-primary">
-            <Bot className="h-6 w-6 text-primary" />
-          </div>
+          <Avatar className="h-16 w-16 border-2 border-primary bg-white">
+            <AvatarImage src={dieguitoAvatar} alt="Dieguito" className="object-cover" />
+            <AvatarFallback className="bg-white text-primary">
+              <Bot className="h-8 w-8" />
+            </AvatarFallback>
+          </Avatar>
           <div>
             <h1 className="text-3xl font-bold text-primary">Dieguito</h1>
             <p className="text-muted-foreground">
