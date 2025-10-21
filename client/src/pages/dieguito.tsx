@@ -4,10 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Send, Bot, User, Upload } from "lucide-react";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import dieguitoAvatar from "@assets/image_1761077350905.png";
 
 interface Message {
   id: string;
@@ -101,8 +102,9 @@ export default function Dieguito() {
                 data-testid={`message-${message.role}-${message.id}`}
               >
                 {message.role === "assistant" && (
-                  <Avatar className="h-8 w-8 border-2 border-primary">
-                    <AvatarFallback className="bg-primary/10 text-primary">
+                  <Avatar className="h-8 w-8 border-2 border-primary bg-white">
+                    <AvatarImage src={dieguitoAvatar} alt="Dieguito" className="object-cover" />
+                    <AvatarFallback className="bg-white text-primary">
                       <Bot className="h-4 w-4" />
                     </AvatarFallback>
                   </Avatar>
@@ -133,8 +135,9 @@ export default function Dieguito() {
             ))}
             {sendMessageMutation.isPending && (
               <div className="flex gap-3 justify-start">
-                <Avatar className="h-8 w-8 border-2 border-primary">
-                  <AvatarFallback className="bg-primary/10 text-primary">
+                <Avatar className="h-8 w-8 border-2 border-primary bg-white">
+                  <AvatarImage src={dieguitoAvatar} alt="Dieguito" className="object-cover" />
+                  <AvatarFallback className="bg-white text-primary">
                     <Bot className="h-4 w-4" />
                   </AvatarFallback>
                 </Avatar>
