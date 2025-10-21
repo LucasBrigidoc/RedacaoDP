@@ -110,6 +110,22 @@ Portal institucional para alunos do Curso de Redação Diego Pereira acompanhare
 - Componentes seguem padrões do Shadcn UI
 - Validação de formulários com Zod
 - Estados de loading e erro tratados em todas as operações
+- Paleta dourada (#D4AF77 / 45 35% 65%) aplicada consistentemente em --primary, --chart-1, --sidebar-primary e --ring
+- Dados demo realistas: 8 redações (notas 720-880), 2 agendamentos pré-criados
+- Cache invalidation automática após mutações (TanStack Query)
+- Test IDs adicionados para todos os elementos interativos
 
-## Data de Criação
-21 de outubro de 2025
+## Status do Projeto
+✅ **MVP Completo e Testado** (21 de outubro de 2025)
+- Todos os testes end-to-end passaram com sucesso
+- Dashboard totalmente funcional com métricas, gráficos e competências ENEM
+- Sistema de agendamento completo com detecção de conflitos
+- Identidade visual DP aplicada corretamente
+- SEO implementado (meta tags, Open Graph)
+- Aprovado pelo architect para entrega
+
+## Melhorias Futuras Sugeridas
+- Adicionar estados de erro explícitos nas queries (retry buttons)
+- Incluir og:image e favicon para branding completo
+- Implementar ThemeToggle para alternância light/dark manual
+- Fine-tuning de espaçamento em telas pequenas (<375px)
