@@ -45,7 +45,8 @@ export function AppSidebar() {
         <img 
           src={headerImageUrl} 
           alt="Curso de Redação - Prof. Diego Pereira" 
-          className="w-full"
+          className="w-full brightness-125 contrast-110"
+          style={{ filter: 'brightness(1.3) contrast(1.15)' }}
         />
       </SidebarHeader>
       <SidebarContent>
