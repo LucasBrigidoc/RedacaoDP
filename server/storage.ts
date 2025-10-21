@@ -1,5 +1,8 @@
-import { type User, type InsertUser, type Essay, type InsertEssay, type Appointment, type InsertAppointment } from "@shared/schema";
+import { type User, type InsertUser, type Essay, type InsertEssay, type Appointment, type InsertAppointment, users, essays, appointments } from "@shared/schema";
 import { randomUUID } from "crypto";
+import { drizzle } from "drizzle-orm/neon-http";
+import { neon } from "@neondatabase/serverless";
+import { eq, desc, asc } from "drizzle-orm";
 
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
@@ -191,4 +194,59 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+export class PostgresStorage implements IStorage {
+  private db: ReturnType<typeof drizzle>;
+
+  constructor() {
+    if (!process.env.DATABASE_URL) {
+      throw new Error("DATABASE_URL is not set");
+    }
+    const sql = neon(process.env.DATABASE_URL);
+    this.db = drizzle(sql);
+  }
+
+  async getUser(id: string): Promise<User | undefined> {
+    const [user] = await this.db.select().from(users).where(eq(users.id, id));
+    return user;
+  }
+
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    const [user] = await this.db.select().from(users).where(eq(users.username, username));
+    return user;
+  }
+
+  async createUser(insertUser: InsertUser): Promise<User> {
+    const [user] = await this.db.insert(users).values(insertUser).returning();
+    return user;
+  }
+
+  async getAllEssays(): Promise<Essay[]> {
+    return this.db.select().from(essays).orderBy(desc(essays.data));
+  }
+
+  async getEssay(id: string): Promise<Essay | undefined> {
+    const [essay] = await this.db.select().from(essays).where(eq(essays.id, id));
+    return essay;
+  }
+
+  async createEssay(insertEssay: InsertEssay): Promise<Essay> {
+    const [essay] = await this.db.insert(essays).values(insertEssay).returning();
+    return essay;
+  }
+
+  async getAllAppointments(): Promise<Appointment[]> {
+    return this.db.select().from(appointments).orderBy(asc(appointments.data));
+  }
+
+  async getAppointment(id: string): Promise<Appointment | undefined> {
+    const [appointment] = await this.db.select().from(appointments).where(eq(appointments.id, id));
+    return appointment;
+  }
+
+  async createAppointment(insertAppointment: InsertAppointment): Promise<Appointment> {
+    const [appointment] = await this.db.insert(appointments).values(insertAppointment).returning();
+    return appointment;
+  }
+}
+
+export const storage = new PostgresStorage();
