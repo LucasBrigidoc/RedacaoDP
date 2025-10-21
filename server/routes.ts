@@ -128,6 +128,76 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.post("/api/dieguito/chat", async (req, res) => {
+    try {
+      const { message } = req.body;
+      
+      if (!message || typeof message !== "string") {
+        return res.status(400).json({ message: "Mensagem inválida" });
+      }
+
+      const lowerMessage = message.toLowerCase();
+      let response = "";
+
+      if (lowerMessage.includes("competência") || lowerMessage.includes("c1") || lowerMessage.includes("c2") || lowerMessage.includes("c3") || lowerMessage.includes("c4") || lowerMessage.includes("c5")) {
+        response = "As 5 competências do ENEM são:\n\n" +
+          "C1 - Norma Culta: Domínio da escrita formal da língua portuguesa (0-200 pontos)\n" +
+          "C2 - Tema: Compreensão e desenvolvimento do tema proposto (0-200 pontos)\n" +
+          "C3 - Argumentação: Defesa de ponto de vista com argumentos consistentes (0-200 pontos)\n" +
+          "C4 - Coesão: Organização textual e uso de conectivos (0-200 pontos)\n" +
+          "C5 - Proposta: Elaboração de proposta de intervenção (0-200 pontos)\n\n" +
+          "A soma das 5 competências resulta na nota final de 0 a 1000 pontos.";
+      } else if (lowerMessage.includes("introdução")) {
+        response = "A introdução da redação do ENEM deve:\n\n" +
+          "✓ Contextualizar o tema de forma clara\n" +
+          "✓ Apresentar a tese (seu posicionamento)\n" +
+          "✓ Ter aproximadamente 5-7 linhas\n" +
+          "✓ Usar repertório sociocultural (citações, dados, fatos históricos)\n" +
+          "✓ Evitar clichês e frases genéricas\n\n" +
+          "Dica: Use o método 'funil' - comece com contexto amplo e afunile para sua tese específica.";
+      } else if (lowerMessage.includes("conclusão") || lowerMessage.includes("proposta")) {
+        response = "A conclusão (C5) deve conter uma proposta de intervenção completa com 5 elementos:\n\n" +
+          "1. Agente: Quem vai executar a ação\n" +
+          "2. Ação: O que deve ser feito\n" +
+          "3. Modo/Meio: Como será feito\n" +
+          "4. Finalidade: Para que/qual objetivo\n" +
+          "5. Detalhamento: Explicação de um dos elementos\n\n" +
+          "Exemplo: 'O Ministério da Educação (agente) deve promover campanhas educativas (ação) por meio de palestras nas escolas (modo) para conscientizar jovens sobre o tema (finalidade), com materiais didáticos específicos desenvolvidos por especialistas (detalhamento).'";
+      } else if (lowerMessage.includes("desenvolvimento")) {
+        response = "O desenvolvimento deve ter 2 parágrafos, cada um com:\n\n" +
+          "✓ Tópico frasal (ideia central do parágrafo)\n" +
+          "✓ Argumentação consistente\n" +
+          "✓ Repertório sociocultural legitimado\n" +
+          "✓ Exemplificação ou dados\n" +
+          "✓ Conexão com a tese da introdução\n" +
+          "✓ Uso adequado de conectivos\n\n" +
+          "Cada parágrafo deve ter aproximadamente 7-9 linhas.";
+      } else if (lowerMessage.includes("nota") || lowerMessage.includes("pontos") || lowerMessage.includes("1000")) {
+        response = "Para alcançar nota 1000 no ENEM você precisa:\n\n" +
+          "✓ 200 pontos em CADA competência (C1, C2, C3, C4, C5)\n" +
+          "✓ Zero erros gramaticais\n" +
+          "✓ Domínio completo do tema\n" +
+          "✓ Argumentação impecável com repertório diversificado\n" +
+          "✓ Coesão e coerência perfeitas\n" +
+          "✓ Proposta de intervenção completa e detalhada\n\n" +
+          "Dica: Pratique muito e busque feedback constante!";
+      } else {
+        response = "Olá! Sou o Dieguito, assistente do Curso de Redação Diego Pereira. Posso ajudar com dúvidas sobre:\n\n" +
+          "📝 Estrutura da redação (introdução, desenvolvimento, conclusão)\n" +
+          "📊 Competências do ENEM (C1 a C5)\n" +
+          "💡 Proposta de intervenção\n" +
+          "✍️ Argumentação e repertório\n" +
+          "📚 Dicas para melhorar sua nota\n\n" +
+          "Faça sua pergunta específica sobre redação que terei prazer em ajudar!";
+      }
+
+      res.json({ response });
+    } catch (error) {
+      console.error("Erro no chat Dieguito:", error);
+      res.status(500).json({ message: "Erro ao processar mensagem" });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

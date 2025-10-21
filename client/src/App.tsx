@@ -8,6 +8,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import Dashboard from "@/pages/dashboard";
 import Agendamentos from "@/pages/agendamentos";
 import Materiais from "@/pages/materiais";
+import Dieguito from "@/pages/dieguito";
 import NotFound from "@/pages/not-found";
 import { useEffect } from "react";
 
@@ -17,6 +18,7 @@ function Router() {
       <Route path="/" component={Dashboard} />
       <Route path="/agendamentos" component={Agendamentos} />
       <Route path="/materiais" component={Materiais} />
+      <Route path="/dieguito" component={Dieguito} />
       <Route component={NotFound} />
     </Switch>
   );

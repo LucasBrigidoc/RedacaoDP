@@ -42,6 +42,16 @@ Portal institucional para alunos do Curso de Redação Diego Pereira acompanhare
   - Botão de download para acesso direto
 - **Organização**: Materiais ordenados por data de upload (mais recentes primeiro)
 
+### 4. Dieguito - Assistente Virtual
+- **Chat Interativo**: Interface de conversação com o assistente virtual Dieguito
+- **Respostas Inteligentes**: Sistema de FAQ sobre redação do ENEM
+  - Competências (C1 a C5)
+  - Estrutura da redação (introdução, desenvolvimento, conclusão)
+  - Proposta de intervenção
+  - Dicas para melhorar a nota
+- **Interface Amigável**: Design de chat moderno com avatares e timestamps
+- **Preparado para RAG**: Estrutura pronta para integração com PDF e OpenAI no futuro
+
 ## Estrutura de Dados
 
 ### Essays (Redações)
@@ -116,6 +126,7 @@ Portal institucional para alunos do Curso de Redação Diego Pereira acompanhare
 - `Dashboard`: Página principal com métricas e visualizações
 - `Agendamentos`: Sistema de agendamento de horários
 - `Materiais`: Página de materiais de estudo e tema semanal
+- `Dieguito`: Chat interativo com assistente virtual de redação
 - `MetricCard`: Card reutilizável para exibir métricas
 - `EssayChart`: Gráfico de evolução das notas
 - `CompetencyBreakdown`: Visualização das competências ENEM
@@ -131,6 +142,7 @@ Portal institucional para alunos do Curso de Redação Diego Pereira acompanhare
 - `GET /api/weekly-theme` - Retorna tema semanal ativo
 - `GET /api/weekly-themes` - Lista todos os temas semanais
 - `POST /api/weekly-themes` - Cria novo tema semanal
+- `POST /api/dieguito/chat` - Envia mensagem para o assistente Dieguito
 
 ## Fluxo do Usuário
 
@@ -154,6 +166,16 @@ Portal institucional para alunos do Curso de Redação Diego Pereira acompanhare
    - Faz download de slides e PDFs
    - Estuda conteúdo para aprimorar redações
 
+4. **Tira Dúvidas com Dieguito**
+   - Navega para página do Dieguito
+   - Faz perguntas sobre redação do ENEM
+   - Recebe respostas instantâneas sobre:
+     * Competências (C1-C5)
+     * Estrutura da redação
+     * Proposta de intervenção
+     * Dicas de argumentação
+   - Consulta histórico de conversas
+
 ## Notas de Desenvolvimento
 - Utiliza sistema de cores baseado em HSL para suporte a modo escuro
 - Design responsivo para mobile, tablet e desktop
@@ -166,24 +188,32 @@ Portal institucional para alunos do Curso de Redação Diego Pereira acompanhare
 - Test IDs adicionados para todos os elementos interativos
 
 ## Status do Projeto
-✅ **Versão 2.0 Completa** (21 de outubro de 2025)
+✅ **Versão 2.1 Completa** (21 de outubro de 2025)
 - Dashboard totalmente funcional com métricas, gráficos e competências ENEM
 - Sistema de agendamento completo com detecção de conflitos
 - **Nova página de Materiais de Estudo implementada**
   - Tema semanal de redação destacado
   - Biblioteca de materiais (slides e PDFs) com download
   - 6 materiais demo pré-carregados
+- **🆕 Dieguito - Assistente Virtual de Redação**
+  - Chat interativo com respostas inteligentes
+  - FAQ sobre competências ENEM, estrutura e dicas
+  - Interface moderna com avatares e timestamps
+  - Preparado para integração RAG com PDF e OpenAI
 - **Dark mode melhorado: tema ultra escuro (preto puro) com alto contraste**
-- **Migração para PostgreSQL (Neon) completa**
-  - Banco de dados persistente com Drizzle ORM
-  - Tabelas: essays, appointments, materials, weekly_themes
-  - Dados demo já populados
+- **Sistema de armazenamento em memória (MemStorage)**
+  - Dados demo pré-carregados para todas as funcionalidades
+  - Pronto para migração PostgreSQL quando necessário
 - Identidade visual DP aplicada intensamente (bordas douradas, títulos, valores, ícones)
 - SEO implementado (meta tags, Open Graph)
 - Sem erros LSP, aplicação 100% funcional
 
 ## Melhorias Futuras Sugeridas
+- **Integração RAG para o Dieguito**: Conectar com OpenAI e processar PDF de materiais
+- Adicionar upload de PDF na interface do Dieguito
+- Implementar histórico persistente de conversas
 - Adicionar estados de erro explícitos nas queries (retry buttons)
 - Incluir og:image e favicon para branding completo
 - Implementar ThemeToggle para alternância light/dark manual
 - Fine-tuning de espaçamento em telas pequenas (<375px)
+- Migração para PostgreSQL quando necessário
