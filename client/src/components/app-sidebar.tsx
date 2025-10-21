@@ -1,4 +1,4 @@
-import { Home, Calendar, FileText } from "lucide-react";
+import { Home, Calendar, FileText, BookOpen } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import {
   Sidebar,
@@ -23,6 +23,11 @@ const menuItems = [
     title: "Agendamentos",
     url: "/agendamentos",
     icon: Calendar,
+  },
+  {
+    title: "Materiais",
+    url: "/materiais",
+    icon: BookOpen,
   },
 ];
 

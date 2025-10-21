@@ -7,6 +7,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import Dashboard from "@/pages/dashboard";
 import Agendamentos from "@/pages/agendamentos";
+import Materiais from "@/pages/materiais";
 import NotFound from "@/pages/not-found";
 import { useEffect } from "react";
 
@@ -15,6 +16,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Dashboard} />
       <Route path="/agendamentos" component={Agendamentos} />
+      <Route path="/materiais" component={Materiais} />
       <Route component={NotFound} />
     </Switch>
   );

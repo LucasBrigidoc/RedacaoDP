@@ -30,11 +30,15 @@ export class MemStorage implements IStorage {
   private users: Map<string, User>;
   private essays: Map<string, Essay>;
   private appointments: Map<string, Appointment>;
+  private materials: Map<string, Material>;
+  private weeklyThemes: Map<string, WeeklyTheme>;
 
   constructor() {
     this.users = new Map();
     this.essays = new Map();
     this.appointments = new Map();
+    this.materials = new Map();
+    this.weeklyThemes = new Map();
     this.seedData();
   }
 
@@ -199,6 +203,52 @@ export class MemStorage implements IStorage {
     const appointment: Appointment = { ...insertAppointment, id, status: "agendado" };
     this.appointments.set(id, appointment);
     return appointment;
+  }
+
+  async getAllMaterials(): Promise<Material[]> {
+    return Array.from(this.materials.values()).sort(
+      (a, b) => new Date(b.dataUpload).getTime() - new Date(a.dataUpload).getTime()
+    );
+  }
+
+  async getMaterial(id: string): Promise<Material | undefined> {
+    return this.materials.get(id);
+  }
+
+  async createMaterial(insertMaterial: InsertMaterial): Promise<Material> {
+    const id = randomUUID();
+    const dataUpload = new Date().toISOString().split('T')[0];
+    const material: Material = { 
+      ...insertMaterial, 
+      id, 
+      dataUpload,
+      descricao: insertMaterial.descricao ?? null,
+    };
+    this.materials.set(id, material);
+    return material;
+  }
+
+  async getCurrentWeeklyTheme(): Promise<WeeklyTheme | undefined> {
+    const themes = Array.from(this.weeklyThemes.values()).filter(t => t.ativo === 1);
+    return themes.sort((a, b) => new Date(b.semana).getTime() - new Date(a.semana).getTime())[0];
+  }
+
+  async getAllWeeklyThemes(): Promise<WeeklyTheme[]> {
+    return Array.from(this.weeklyThemes.values()).sort(
+      (a, b) => new Date(b.semana).getTime() - new Date(a.semana).getTime()
+    );
+  }
+
+  async createWeeklyTheme(insertTheme: InsertWeeklyTheme): Promise<WeeklyTheme> {
+    const id = randomUUID();
+    const theme: WeeklyTheme = { 
+      ...insertTheme, 
+      id, 
+      ativo: 1,
+      descricao: insertTheme.descricao ?? null,
+    };
+    this.weeklyThemes.set(id, theme);
+    return theme;
   }
 }
 
