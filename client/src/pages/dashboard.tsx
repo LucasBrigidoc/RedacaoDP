@@ -85,20 +85,9 @@ export default function Dashboard() {
         </CardContent>
       </Card>
 
-      <div className="grid gap-4 sm:gap-6 lg:grid-cols-3">
-        <div className="lg:col-span-2 space-y-4 sm:space-y-6">
-          <div className="hidden sm:block">
-            <CompetencyStats essays={essays || []} />
-          </div>
-        </div>
-
-        <div className="space-y-4 sm:space-y-6">
-          <PerformanceInsights essays={essays || []} />
-          <div className="sm:hidden">
-            <CompetencyStats essays={essays || []} />
-          </div>
-        </div>
-      </div>
+      <CompetencyStats essays={essays || []} />
+      
+      <PerformanceInsights essays={essays || []} />
 
       <Card className="border-primary/30 dark:border-primary/20">
         <CardHeader className="pb-4">
