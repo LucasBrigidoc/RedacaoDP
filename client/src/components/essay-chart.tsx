@@ -44,7 +44,8 @@ export function EssayChart({ essays }: EssayChartProps) {
             tickLine={false}
             domain={[0, 1000]}
             ticks={[0, 200, 400, 600, 800, 1000]}
-            width={40}
+            width={50}
+            tickFormatter={(value) => value.toString()}
           />
           <Tooltip
             contentStyle={{
