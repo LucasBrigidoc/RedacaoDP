@@ -5,12 +5,13 @@ Portal institucional para alunos do Curso de Redação Diego Pereira acompanhare
 
 ## Identidade Visual
 - **Logo**: DP (Diego Pereira) em cor dourada (#D4AF77)
-- **Tema**: Escuro por padrão com destaque dourado intenso
-- **Paleta de Cores**: 
+- **Tema**: Dark mode ultra escuro (preto puro) com destaque dourado intenso
+- **Paleta de Cores (Dark Mode)**: 
   - Dourado primário (45 40% 70%) - Títulos, valores, ícones, bordas
-  - Azul marinho escuro profundo (220 30% 12%) - Background principal
-  - Cinza ardósia escuro (220 25% 16%) - Cards e superfícies secundárias
-  - Bordas douradas (primary/30) em todos os cards principais
+  - Preto puro (0 0% 3%) - Background principal
+  - Cinza ultra escuro (0 0% 5%) - Cards e superfícies secundárias
+  - Texto claro (0 0% 98%) - Texto principal com alto contraste
+  - Bordas douradas (primary/20) em todos os cards principais
   - Ícones com fundo dourado/transparente nos metric cards
 
 ## Funcionalidades Principais
@@ -31,6 +32,15 @@ Portal institucional para alunos do Curso de Redação Diego Pereira acompanhare
 - Horários disponíveis de 8h às 18h
 - Lista de próximos agendamentos confirmados
 - Sistema de reserva para o laboratório de redação
+
+### 3. Materiais de Estudo
+- **Tema Semanal**: Card destacado mostrando o tema de redação da semana atual com descrição
+- **Biblioteca de Materiais**: Grade de materiais disponíveis para download
+  - Slides de aulas (ícone de apresentação)
+  - PDFs de conteúdo (ícone de documento)
+  - Descrição de cada material
+  - Botão de download para acesso direto
+- **Organização**: Materiais ordenados por data de upload (mais recentes primeiro)
 
 ## Estrutura de Dados
 
@@ -59,6 +69,29 @@ Portal institucional para alunos do Curso de Redação Diego Pereira acompanhare
 }
 ```
 
+### Materials (Materiais)
+```typescript
+{
+  id: string
+  titulo: string       // Título do material
+  descricao: string    // Descrição do conteúdo
+  tipo: string         // "slide" ou "pdf"
+  arquivo: string      // URL ou caminho do arquivo
+  dataUpload: date     // Data de upload
+}
+```
+
+### WeeklyThemes (Temas Semanais)
+```typescript
+{
+  id: string
+  tema: string         // Tema da redação semanal
+  descricao: string    // Descrição/orientações
+  semana: date         // Data de início da semana
+  ativo: number        // 1 = tema atual, 0 = tema passado
+}
+```
+
 ## Stack Tecnológica
 
 ### Frontend
@@ -72,15 +105,17 @@ Portal institucional para alunos do Curso de Redação Diego Pereira acompanhare
 
 ### Backend
 - Express.js
-- In-memory storage (MemStorage)
+- PostgreSQL (Neon serverless) com Drizzle ORM
 - Zod (validação)
+- Neon Database para persistência de dados
 
 ## Arquitetura
 
 ### Componentes Principais
-- `AppSidebar`: Navegação lateral com logo DP
+- `AppSidebar`: Navegação lateral com logo DP e menu principal
 - `Dashboard`: Página principal com métricas e visualizações
 - `Agendamentos`: Sistema de agendamento de horários
+- `Materiais`: Página de materiais de estudo e tema semanal
 - `MetricCard`: Card reutilizável para exibir métricas
 - `EssayChart`: Gráfico de evolução das notas
 - `CompetencyBreakdown`: Visualização das competências ENEM
@@ -91,6 +126,11 @@ Portal institucional para alunos do Curso de Redação Diego Pereira acompanhare
 - `POST /api/essays` - Cria nova redação
 - `GET /api/appointments` - Lista agendamentos
 - `POST /api/appointments` - Cria novo agendamento
+- `GET /api/materials` - Lista todos os materiais
+- `POST /api/materials` - Adiciona novo material
+- `GET /api/weekly-theme` - Retorna tema semanal ativo
+- `GET /api/weekly-themes` - Lista todos os temas semanais
+- `POST /api/weekly-themes` - Cria novo tema semanal
 
 ## Fluxo do Usuário
 
@@ -107,6 +147,13 @@ Portal institucional para alunos do Curso de Redação Diego Pereira acompanhare
    - Confirma agendamento
    - Visualiza agendamentos futuros
 
+3. **Acesso a Materiais**
+   - Navega para página de materiais
+   - Visualiza tema semanal de redação
+   - Consulta biblioteca de materiais disponíveis
+   - Faz download de slides e PDFs
+   - Estuda conteúdo para aprimorar redações
+
 ## Notas de Desenvolvimento
 - Utiliza sistema de cores baseado em HSL para suporte a modo escuro
 - Design responsivo para mobile, tablet e desktop
@@ -119,14 +166,21 @@ Portal institucional para alunos do Curso de Redação Diego Pereira acompanhare
 - Test IDs adicionados para todos os elementos interativos
 
 ## Status do Projeto
-✅ **MVP Completo e Testado** (21 de outubro de 2025)
-- Todos os testes end-to-end passaram com sucesso
+✅ **Versão 2.0 Completa** (21 de outubro de 2025)
 - Dashboard totalmente funcional com métricas, gráficos e competências ENEM
 - Sistema de agendamento completo com detecção de conflitos
-- **Tema escuro ativado por padrão com elementos dourados em destaque**
+- **Nova página de Materiais de Estudo implementada**
+  - Tema semanal de redação destacado
+  - Biblioteca de materiais (slides e PDFs) com download
+  - 6 materiais demo pré-carregados
+- **Dark mode melhorado: tema ultra escuro (preto puro) com alto contraste**
+- **Migração para PostgreSQL (Neon) completa**
+  - Banco de dados persistente com Drizzle ORM
+  - Tabelas: essays, appointments, materials, weekly_themes
+  - Dados demo já populados
 - Identidade visual DP aplicada intensamente (bordas douradas, títulos, valores, ícones)
 - SEO implementado (meta tags, Open Graph)
-- Aprovado pelo architect para entrega
+- Sem erros LSP, aplicação 100% funcional
 
 ## Melhorias Futuras Sugeridas
 - Adicionar estados de erro explícitos nas queries (retry buttons)
