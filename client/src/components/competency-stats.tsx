@@ -52,16 +52,7 @@ export function CompetencyStats({ essays }: CompetencyStatsProps) {
 
   return (
     <Card className="border-primary/30 dark:bg-card dark:border-primary/20" data-testid="card-competency-stats">
-      <CardHeader className="pb-3 sm:pb-6">
-        <CardTitle className="flex items-center gap-2 text-foreground dark:text-foreground text-base sm:text-lg">
-          <BarChart3 className="h-4 w-4 sm:h-5 sm:w-5 text-primary dark:text-primary" />
-          <span className="truncate">Estatísticas Detalhadas</span>
-        </CardTitle>
-        <CardDescription className="text-xs sm:text-sm text-muted-foreground dark:text-muted-foreground">
-          Análise completa por competência
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-4 sm:space-y-6">
+      <CardContent className="space-y-4 sm:space-y-6 pt-6">
         {stats.map((stat) => (
           <div key={stat.key} className="space-y-2 sm:space-y-3" data-testid={`stat-${stat.key}`}>
             <div className="flex items-start justify-between gap-2">
