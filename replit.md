@@ -16,6 +16,22 @@ Portal institucional para alunos do Curso de Redação Diego Pereira acompanhare
 
 ## Funcionalidades Principais
 
+### 0. Autenticação
+- **Tela de Login**: Interface moderna e elegante baseada na identidade visual do curso
+  - Fundo escuro com imagem de fundo semi-transparente
+  - Logo DP centralizado
+  - Campos de email e senha com ícones
+  - Opção "Permanecer logado"
+  - Link "Esqueceu a senha?"
+  - Link alternativo "Login por CPF"
+  - Botão "Entrar" em cor dourada
+- **Proteção de Rotas**: Todas as páginas do portal requerem autenticação
+- **Sessão Segura**: Sistema de sessão com cookies HttpOnly
+- **Logout**: Botão "Sair" no rodapé do sidebar
+- **Credenciais de Teste**: 
+  - Email: aluno@cursoderedacao.com
+  - Senha: senha123
+
 ### 1. Dashboard
 - **Cards de Métricas**: Média geral, total de redações, última nota, meta ENEM
 - **Gráfico de Evolução**: Visualização temporal das notas ao longo do tempo
@@ -195,7 +211,13 @@ Portal institucional para alunos do Curso de Redação Diego Pereira acompanhare
 - Test IDs adicionados para todos os elementos interativos
 
 ## Status do Projeto
-✅ **Versão 2.2 Completa** (21 de outubro de 2025)
+✅ **Versão 2.3 Completa** (21 de outubro de 2025)
+- **🆕 Sistema de Autenticação Completo**
+  - Tela de login elegante baseada na identidade visual do curso
+  - Proteção de todas as rotas do backend e frontend
+  - Sessão segura com cookies HttpOnly
+  - Botão de logout integrado ao sidebar
+  - Credenciais de teste: aluno@cursoderedacao.com / senha123
 - Dashboard totalmente funcional com métricas, gráficos e competências ENEM
 - **🆕 Layout 100% Responsivo Otimizado**
   - Todos os componentes adaptados para mobile, tablet e desktop
