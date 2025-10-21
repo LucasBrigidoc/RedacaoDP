@@ -3,7 +3,58 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertEssaySchema, insertAppointmentSchema, insertMaterialSchema, insertWeeklyThemeSchema } from "@shared/schema";
 
+declare module 'express-session' {
+  interface SessionData {
+    userId?: string;
+    isAuthenticated?: boolean;
+  }
+}
+
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Authentication routes
+  app.post("/api/auth/login", async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      
+      // For now, use hardcoded credentials (will be linked to database later)
+      if (email === "aluno@cursoderedacao.com" && password === "senha123") {
+        req.session.isAuthenticated = true;
+        req.session.userId = "demo-user-id";
+        res.json({ success: true, message: "Login bem-sucedido" });
+      } else {
+        res.status(401).json({ success: false, message: "Email ou senha incorretos" });
+      }
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Erro no servidor" });
+    }
+  });
+
+  app.post("/api/auth/logout", async (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        return res.status(500).json({ success: false, message: "Erro ao fazer logout" });
+      }
+      res.clearCookie('connect.sid');
+      res.json({ success: true, message: "Logout bem-sucedido" });
+    });
+  });
+
+  app.get("/api/auth/check", async (req, res) => {
+    if (req.session.isAuthenticated) {
+      res.json({ authenticated: true });
+    } else {
+      res.status(401).json({ authenticated: false });
+    }
+  });
+
+  // Middleware to protect routes
+  const requireAuth = (req: any, res: any, next: any) => {
+    if (req.session.isAuthenticated) {
+      next();
+    } else {
+      res.status(401).json({ message: "Não autenticado" });
+    }
+  };
   app.get("/api/essays", async (_req, res) => {
     try {
       const essays = await storage.getAllEssays();
