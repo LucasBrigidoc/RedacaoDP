@@ -32,7 +32,7 @@ export default function Dashboard() {
   const targetGrade = 900;
 
   return (
-    <div className="space-y-4 sm:space-y-6 pb-6">
+    <div className="space-y-3 sm:space-y-6 pb-4 sm:pb-6">
       <div className="border-l-4 border-primary pl-3 sm:pl-4">
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-1 sm:mb-2">
           Bem-vindo ao Portal do Aluno
@@ -74,13 +74,13 @@ export default function Dashboard() {
       </div>
 
       <Card className="border-primary/30 overflow-hidden">
-        <CardHeader className="pb-4">
-          <CardTitle className="flex items-center gap-2 text-primary text-lg sm:text-xl">
+        <CardHeader className="pb-2 sm:pb-4">
+          <CardTitle className="flex items-center gap-2 text-primary text-base sm:text-xl">
             <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5" />
             Evolução das Notas
           </CardTitle>
         </CardHeader>
-        <CardContent className="px-2 sm:px-6">
+        <CardContent className="px-2 sm:px-6 pt-0">
           <EssayChart essays={essays || []} />
         </CardContent>
       </Card>
@@ -90,13 +90,13 @@ export default function Dashboard() {
       <PerformanceInsights essays={essays || []} />
 
       <Card className="border-primary/30 dark:border-primary/20">
-        <CardHeader className="pb-4">
-          <CardTitle className="flex items-center gap-2 text-primary dark:text-primary text-lg sm:text-xl">
+        <CardHeader className="pb-2 sm:pb-4">
+          <CardTitle className="flex items-center gap-2 text-primary dark:text-primary text-base sm:text-xl">
             <FileText className="h-4 w-4 sm:h-5 sm:w-5" />
             Últimas Redações Corrigidas
           </CardTitle>
         </CardHeader>
-        <CardContent className="px-3 sm:px-6">
+        <CardContent className="px-3 sm:px-6 pt-0">
           <RecentEssays essays={essays?.slice(0, 5) || []} />
         </CardContent>
       </Card>

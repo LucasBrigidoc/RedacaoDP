@@ -100,10 +100,10 @@ export function PerformanceInsights({ essays }: PerformanceInsightsProps) {
   const needsImprovement = distanceToGoal > 0;
 
   return (
-    <div className="space-y-4 sm:space-y-6">
+    <div className="space-y-3 sm:space-y-6">
       {/* Tendência Geral */}
       <Card className={`border-2 ${trend === "up" ? "border-green-500/30" : trend === "down" ? "border-red-500/30" : "border-primary/30"} dark:bg-card`} data-testid="card-performance-trend">
-        <CardHeader className="pb-3 sm:pb-6">
+        <CardHeader className="pb-2 sm:pb-6">
           <div className="flex items-start justify-between gap-2">
             <div className="space-y-1 flex-1 min-w-0">
               <CardTitle className="flex items-center gap-2 text-foreground dark:text-foreground text-base sm:text-lg">
@@ -119,9 +119,9 @@ export function PerformanceInsights({ essays }: PerformanceInsightsProps) {
             </Badge>
           </div>
         </CardHeader>
-        <CardContent className="pt-0">
-          <div className="flex items-center gap-3 sm:gap-6">
-            <div className={`p-3 sm:p-4 rounded-full ${trendBg}`}>
+        <CardContent className="pt-0 pb-4 sm:pb-6">
+          <div className="flex items-center gap-2 sm:gap-6">
+            <div className={`p-2 sm:p-4 rounded-full ${trendBg}`}>
               {(() => {
                 const Icon = trendIcon;
                 return <Icon className={`h-6 w-6 sm:h-8 sm:w-8 ${trendColor}`} />;
@@ -152,7 +152,7 @@ export function PerformanceInsights({ essays }: PerformanceInsightsProps) {
 
       {/* Competências Mais Fracas */}
       <Card className="border-red-500/30 dark:bg-card dark:border-red-500/20" data-testid="card-weakest-competencies">
-        <CardHeader className="pb-3 sm:pb-6">
+        <CardHeader className="pb-2 sm:pb-6">
           <CardTitle className="flex items-center gap-2 text-foreground dark:text-foreground text-base sm:text-lg">
             <AlertCircle className="h-4 w-4 sm:h-5 sm:w-5 text-red-500" />
             Onde Você Pode Melhorar
@@ -161,9 +161,9 @@ export function PerformanceInsights({ essays }: PerformanceInsightsProps) {
             Competências que precisam de mais atenção
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4 sm:space-y-5">
+        <CardContent className="space-y-3 sm:space-y-5">
           {weakestCompetencies.map((comp, index) => (
-            <div key={comp.key} className="space-y-2" data-testid={`weakness-${comp.key}`}>
+            <div key={comp.key} className="space-y-1.5 sm:space-y-2" data-testid={`weakness-${comp.key}`}>
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                 <div className="flex items-center gap-2 flex-wrap">
                   <Badge variant="destructive" className="bg-red-500/20 text-red-600 dark:bg-red-500/30 dark:text-red-400 text-xs whitespace-nowrap">
@@ -181,9 +181,9 @@ export function PerformanceInsights({ essays }: PerformanceInsightsProps) {
                   style={{ width: `${comp.percentage}%` }}
                 />
               </div>
-              <div className="flex items-start gap-2 p-2.5 sm:p-3 bg-primary/5 dark:bg-primary/10 rounded-lg">
+              <div className="flex items-start gap-1.5 sm:gap-2 p-2 sm:p-3 bg-primary/5 dark:bg-primary/10 rounded-lg">
                 <Lightbulb className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary dark:text-primary mt-0.5 flex-shrink-0" />
-                <p className="text-xs sm:text-sm text-foreground/90 dark:text-foreground/80 leading-relaxed" data-testid={`text-tip-${comp.key}`}>
+                <p className="text-xs sm:text-sm text-foreground/90 dark:text-foreground/80 leading-snug sm:leading-relaxed" data-testid={`text-tip-${comp.key}`}>
                   {comp.tip}
                 </p>
               </div>
@@ -194,7 +194,7 @@ export function PerformanceInsights({ essays }: PerformanceInsightsProps) {
 
       {/* Competências Mais Fortes */}
       <Card className="border-green-500/30 dark:bg-card dark:border-green-500/20" data-testid="card-strongest-competencies">
-        <CardHeader className="pb-3 sm:pb-6">
+        <CardHeader className="pb-2 sm:pb-6">
           <CardTitle className="flex items-center gap-2 text-foreground dark:text-foreground text-base sm:text-lg">
             <Target className="h-4 w-4 sm:h-5 sm:w-5 text-green-500" />
             Seus Pontos Fortes
@@ -203,7 +203,7 @@ export function PerformanceInsights({ essays }: PerformanceInsightsProps) {
             Continue assim nessas competências!
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-3 sm:space-y-4">
+        <CardContent className="space-y-2 sm:space-y-4">
           {strongestCompetencies.map((comp) => (
             <div key={comp.key} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3" data-testid={`strength-${comp.key}`}>
               <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
@@ -228,14 +228,14 @@ export function PerformanceInsights({ essays }: PerformanceInsightsProps) {
       {/* Distância da Meta */}
       {needsImprovement && (
         <Card className="border-primary/30 dark:bg-card dark:border-primary/20" data-testid="card-goal-distance">
-          <CardHeader className="pb-3 sm:pb-6">
+          <CardHeader className="pb-2 sm:pb-6">
             <CardTitle className="flex items-center gap-2 text-foreground dark:text-foreground text-base sm:text-lg">
               <Target className="h-4 w-4 sm:h-5 sm:w-5 text-primary dark:text-primary" />
               Foco na Meta ENEM
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3">
+            <div className="space-y-2 sm:space-y-3">
               <div className="flex items-baseline gap-1.5 sm:gap-2 flex-wrap">
                 <span className="text-xs sm:text-sm text-muted-foreground dark:text-muted-foreground">Faltam</span>
                 <span className="text-3xl sm:text-4xl font-bold text-primary dark:text-primary" data-testid="text-points-to-goal">

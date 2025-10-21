@@ -52,9 +52,9 @@ export function CompetencyStats({ essays }: CompetencyStatsProps) {
 
   return (
     <Card className="border-primary/30 dark:bg-card dark:border-primary/20" data-testid="card-competency-stats">
-      <CardContent className="space-y-4 sm:space-y-6 pt-6">
+      <CardContent className="space-y-3 sm:space-y-6 pt-4 sm:pt-6">
         {stats.map((stat) => (
-          <div key={stat.key} className="space-y-2 sm:space-y-3" data-testid={`stat-${stat.key}`}>
+          <div key={stat.key} className="space-y-1.5 sm:space-y-3" data-testid={`stat-${stat.key}`}>
             <div className="flex items-start justify-between gap-2">
               <div className="space-y-1 flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
@@ -88,12 +88,12 @@ export function CompetencyStats({ essays }: CompetencyStatsProps) {
               </div>
             </div>
             
-            <div className="space-y-2">
-              <div className="flex items-center justify-between text-sm">
+            <div className="space-y-1 sm:space-y-2">
+              <div className="flex items-center justify-between text-xs sm:text-sm">
                 <span className="text-muted-foreground dark:text-muted-foreground">Progresso</span>
                 <span className="font-medium text-foreground dark:text-foreground">{stat.percentage.toFixed(0)}%</span>
               </div>
-              <div className="bg-muted/50 dark:bg-muted/30 rounded-full h-2.5 overflow-hidden">
+              <div className="bg-muted/50 dark:bg-muted/30 rounded-full h-2 sm:h-2.5 overflow-hidden">
                 <div 
                   className="bg-primary dark:bg-primary h-full rounded-full transition-all"
                   style={{ width: `${stat.percentage}%` }}
@@ -101,7 +101,7 @@ export function CompetencyStats({ essays }: CompetencyStatsProps) {
               </div>
             </div>
 
-            <div className="flex items-center justify-between text-sm pt-2 border-t border-border dark:border-border">
+            <div className="flex items-center justify-between text-xs sm:text-sm pt-1.5 sm:pt-2 border-t border-border dark:border-border">
               <div className="flex items-center gap-4">
                 <div>
                   <span className="text-muted-foreground dark:text-muted-foreground">Mínima: </span>
