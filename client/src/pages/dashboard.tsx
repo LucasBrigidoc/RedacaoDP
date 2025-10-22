@@ -129,7 +129,7 @@ export default function Dashboard() {
                 </div>
                 
                 <p className="text-xs text-muted-foreground">
-                  {filteredCount} {filteredCount === 1 ? "redação" : "redações"} • {getPeriodLabel()}
+                  {filteredCount} {filteredCount === 1 ? "redação" : "redações"}
                 </p>
               </div>
             </div>
