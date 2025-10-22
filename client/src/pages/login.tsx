@@ -47,10 +47,10 @@ export default function Login() {
           </div>
           <div className="border-l-4 border-primary pl-4 inline-block">
             <h1 className="text-3xl font-bold text-white text-left">
-              Área Exclusiva
+              Portal do Aluno
             </h1>
             <p className="text-muted-foreground text-left mt-1">
-              Portal do Aluno
+              Área Exclusiva
             </p>
           </div>
         </div>
