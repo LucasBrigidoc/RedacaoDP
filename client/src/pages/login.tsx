@@ -7,7 +7,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { Lock, Mail, Eye, EyeOff } from "lucide-react";
 import dpLogo from "@assets/imagem_2025-10-21_000635546_1761015995551.png";
-import loginImage from "@assets/image_1761088087983.png";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -41,13 +40,6 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-black flex items-center justify-center relative overflow-hidden">
-      <div 
-        className="absolute inset-0 bg-cover bg-center opacity-40"
-        style={{ backgroundImage: `url(${loginImage})` }}
-      />
-      
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent" />
-
       <div className="relative z-10 w-full max-w-md px-6">
         <div className="flex justify-center mb-8">
           <img src={dpLogo} alt="DP Logo" className="h-20 w-20" />
@@ -132,12 +124,6 @@ export default function Login() {
             >
               {isLoading ? "Entrando..." : "Entrar"}
             </Button>
-
-            <div className="text-center">
-              <a href="#" className="text-sm text-gray-400 hover:text-primary transition-colors">
-                Login por CPF
-              </a>
-            </div>
           </form>
         </div>
 
