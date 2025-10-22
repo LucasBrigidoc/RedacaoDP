@@ -17,13 +17,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { email, password } = req.body;
       
-      // For now, use hardcoded credentials (will be linked to database later)
-      if (email === "aluno@cursoderedacao.com" && password === "senha123") {
+      // Allow any login for now (database not configured yet)
+      if (email && password) {
         req.session.isAuthenticated = true;
-        req.session.userId = "demo-user-id";
+        req.session.userId = email;
         res.json({ success: true, message: "Login bem-sucedido" });
       } else {
-        res.status(401).json({ success: false, message: "Email ou senha incorretos" });
+        res.status(400).json({ success: false, message: "Email e senha são obrigatórios" });
       }
     } catch (error) {
       res.status(500).json({ success: false, message: "Erro no servidor" });
