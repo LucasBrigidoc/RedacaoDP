@@ -92,7 +92,7 @@ export default function Agendamentos() {
   return (
     <div className="space-y-6">
       <div className="border-l-4 border-primary pl-4">
-        <h1 className="text-4xl font-bold text-primary mb-2">
+        <h1 className="text-4xl font-bold text-white mb-2">
           Laboratório de Redação
         </h1>
         <p className="text-muted-foreground">
