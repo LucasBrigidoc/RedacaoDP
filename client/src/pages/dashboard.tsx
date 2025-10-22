@@ -9,7 +9,7 @@ import { MetricCard } from "@/components/metric-card";
 import { PerformanceInsights } from "@/components/performance-insights";
 import { CompetencyStats } from "@/components/competency-stats";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { subDays, subMonths, isAfter, parseISO } from "date-fns";
+import { subDays, subMonths, isAfter, parseISO, differenceInDays } from "date-fns";
 
 type PeriodFilter = "7days" | "15days" | "1month" | "3months" | "all";
 
@@ -67,6 +67,40 @@ export default function Dashboard() {
     : 0;
   const latestGrade = essays?.[0]?.notaTotal || 0;
   const targetGrade = 900;
+
+  const getEssayFrequency = () => {
+    if (!essays || essays.length < 2) return null;
+
+    const sortedEssays = [...essays].sort((a, b) => 
+      new Date(a.data).getTime() - new Date(b.data).getTime()
+    );
+
+    const firstDate = parseISO(sortedEssays[0].data);
+    const lastDate = parseISO(sortedEssays[sortedEssays.length - 1].data);
+    const totalDays = differenceInDays(lastDate, firstDate);
+    
+    if (totalDays === 0) return null;
+
+    const avgDaysPerEssay = totalDays / (essays.length - 1);
+
+    if (avgDaysPerEssay < 1) {
+      return "Múltiplas por dia";
+    } else if (avgDaysPerEssay < 3) {
+      return "~3 por semana";
+    } else if (avgDaysPerEssay < 5) {
+      return "~2 por semana";
+    } else if (avgDaysPerEssay < 10) {
+      return "~1 por semana";
+    } else if (avgDaysPerEssay < 20) {
+      return "~2 por mês";
+    } else if (avgDaysPerEssay < 45) {
+      return "~1 por mês";
+    } else {
+      return "Esporádica";
+    }
+  };
+
+  const essayFrequency = getEssayFrequency();
 
   const getPeriodLabel = () => {
     switch (periodFilter) {
@@ -136,12 +170,26 @@ export default function Dashboard() {
           </CardContent>
         </Card>
         
-        <MetricCard
-          title="Total de Redações"
-          value={totalEssays}
-          icon={FileText}
-          data-testid="card-total-redacoes"
-        />
+        <Card className="hover-elevate border-primary/30" data-testid="card-total-redacoes">
+          <CardContent className="p-4 sm:p-6">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <p className="text-xs sm:text-sm font-medium text-muted-foreground">Total de Redações</p>
+              <div className="p-1.5 sm:p-2 rounded-lg bg-primary/10 border border-primary/20">
+                <FileText className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+              </div>
+            </div>
+            <div className="space-y-1">
+              <p className="text-2xl sm:text-3xl font-mono font-bold text-primary">
+                {totalEssays}
+              </p>
+              {essayFrequency && (
+                <p className="text-xs text-muted-foreground">
+                  Frequência: {essayFrequency}
+                </p>
+              )}
+            </div>
+          </CardContent>
+        </Card>
         <MetricCard
           title="Última Nota"
           value={latestGrade}
