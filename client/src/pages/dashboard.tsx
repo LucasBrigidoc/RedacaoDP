@@ -132,30 +132,6 @@ export default function Dashboard() {
                   {filteredCount} {filteredCount === 1 ? "redação" : "redações"} • {getPeriodLabel()}
                 </p>
               </div>
-
-              {averageGrade > 0 && (
-                <div className={`flex items-center gap-1 text-xs ${averageGrade >= 700 ? "text-chart-3" : averageGrade >= 500 ? "text-muted-foreground" : "text-chart-5"}`}>
-                  {averageGrade >= 700 ? (
-                    <>
-                      <TrendingUp className="h-3 w-3" />
-                      <span className="hidden sm:inline">Acima da média</span>
-                      <span className="sm:hidden">↑ Média</span>
-                    </>
-                  ) : averageGrade >= 500 ? (
-                    <>
-                      <TrendingUp className="h-3 w-3 rotate-90" />
-                      <span className="hidden sm:inline">Na média</span>
-                      <span className="sm:hidden">= Média</span>
-                    </>
-                  ) : (
-                    <>
-                      <TrendingUp className="h-3 w-3 rotate-180" />
-                      <span className="hidden sm:inline">Abaixo da média</span>
-                      <span className="sm:hidden">↓ Média</span>
-                    </>
-                  )}
-                </div>
-              )}
             </div>
           </CardContent>
         </Card>
